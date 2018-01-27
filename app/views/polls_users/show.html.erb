@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Poll:</strong>
+  <%= @polls_user.poll %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @polls_user.user %>
+</p>
+
+<p>
+  <strong>Yea:</strong>
+  <%= @polls_user.yea %>
+</p>
+
+<p>
+  <strong>Nay:</strong>
+  <%= @polls_user.nay %>
+</p>
+
+<%= link_to 'Edit', edit_polls_user_path(@polls_user) %> |
+<%= link_to 'Back', polls_users_path %>

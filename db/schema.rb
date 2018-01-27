@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127202558) do
+ActiveRecord::Schema.define(version: 20180127210222) do
 
   create_table "categories", force: :cascade do |t|
     t.string "code"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20180127202558) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_polls_on_category_id"
+  end
+
+  create_table "polls_users", force: :cascade do |t|
+    t.integer "poll_id"
+    t.integer "user_id"
+    t.boolean "yea"
+    t.boolean "nay"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_polls_users_on_poll_id"
+    t.index ["user_id"], name: "index_polls_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

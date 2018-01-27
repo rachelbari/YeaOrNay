@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :polls_users
   resources :polls
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :categories
