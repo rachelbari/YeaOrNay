@@ -1,29 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @politician.first_name %>
-</p>
+<h1>
+  <strong><%= @politician.first_name %> <%= @politician.last_name %> </strong>
+</h1>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @politician.last_name %>
-</p>
+<div class="yea-bill">
+  <h2> Yea </h2>
+  <% @agree.each do |a| %>
 
-<p>
-  <strong>Role:</strong>
-  <%= @politician.role %>
-</p>
+      <div>
+        <h3>
+          <%= a.title %>
+        </h3>
+        <p>  
+          <%= a.text %>
+        </p>
+    </div>
 
-<p>
-  <strong>Party:</strong>
-  <%= @politician.party %>
-</p>
+  <% end %>
+</div>
 
-<p>
-  <strong>State:</strong>
-  <%= @politician.state %>
-</p>
+
+<div class="nay-bill">
+  <h2> Nay </h2>
+  <% @disagree.each do |d| %>
+
+        <h3>
+          <%= d.title %>
+        </h3>
+        <p>  
+          <%= d.text %>
+        </p>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_politician_path(@politician) %> |
 <%= link_to 'Back', politicians_path %>

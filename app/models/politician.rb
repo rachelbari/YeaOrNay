@@ -1,3 +1,3 @@
 class Politician < ApplicationRecord
-	has_many :bill_politicans
+	has_many :bills_politicans
 end

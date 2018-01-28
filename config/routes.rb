@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :bill_politicians
+  resources :bills_politicians
   resources :bills
   resources :politicians
   resources :polls_users

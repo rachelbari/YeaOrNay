@@ -5,11 +5,43 @@ class PoliticiansController < ApplicationController
   # GET /politicians.json
   def index
     @politicians = Politician.all
+
+    @senators = Array.new
+    @reps = Array.new
+
+    @politicians.each do |politician|
+      if politician.role == "Senator"
+        @senators << politician
+      else
+        @reps << politician
+      end
+    end
+
   end
 
   # GET /politicians/1
   # GET /politicians/1.json
   def show
+    id_bill = BillsPolitician.all.where(politician_id: @politician.id)
+
+    @agree = Array.new
+    @disagree = Array.new
+
+    @my_bills = Array.new
+    @shared_bills = Array.new
+
+    id_bill.each do |x|
+      @my_bills << x.bill
+    end
+
+    @my_bills.each do |a|
+      if (a.id % 2 == 0)
+        @agree << a
+      else
+        @disagree << a
+      end
+    end
+
   end
 
   # GET /politicians/new

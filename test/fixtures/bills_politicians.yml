@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bill: one
+  politician: one
+  yea: false
+  nay: false
+
+two:
+  bill: two
+  politician: two
+  yea: false
+  nay: false

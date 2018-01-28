@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128025854) do
-
-  create_table "bill_politicians", force: :cascade do |t|
-    t.integer "bill_id"
-    t.integer "politican_id"
-    t.boolean "yea"
-    t.boolean "nay"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["bill_id"], name: "index_bill_politicians_on_bill_id"
-    t.index ["politican_id"], name: "index_bill_politicians_on_politican_id"
-  end
+ActiveRecord::Schema.define(version: 20180128045531) do
 
   create_table "bills", force: :cascade do |t|
     t.string "title"
@@ -31,6 +20,17 @@ ActiveRecord::Schema.define(version: 20180128025854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_bills_on_category_id"
+  end
+
+  create_table "bills_politicians", force: :cascade do |t|
+    t.integer "bill_id"
+    t.integer "politician_id"
+    t.boolean "yea"
+    t.boolean "nay"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bill_id"], name: "index_bills_politicians_on_bill_id"
+    t.index ["politician_id"], name: "index_bills_politicians_on_politician_id"
   end
 
   create_table "categories", force: :cascade do |t|

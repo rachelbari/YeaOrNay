@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Title</th>
       <th>Text</th>
-      <th>Category</th>
+      <th>Category ID</th>
       <th>Status</th>
       <th colspan="3"></th>
     </tr>
@@ -16,9 +17,10 @@
   <tbody>
     <% @bills.each do |bill| %>
       <tr>
+        <td><%= bill.id %></td> 
         <td><%= bill.title %></td>
         <td><%= bill.text %></td>
-        <td><%= bill.category %></td>
+        <td><%= bill.category_id %></td>
         <td><%= bill.status %></td>
         <td><%= link_to 'Show', bill %></td>
         <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
