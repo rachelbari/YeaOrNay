@@ -1,37 +1,69 @@
-<%= form_with(model: polls_user, local: true) do |form| %>
-  <% if polls_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(polls_user.errors.count, "error") %> prohibited this polls_user from being saved:</h2>
-
-      <ul>
-      <% polls_user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :poll_id %>
-    <%= form.text_field :poll_id, id: :polls_user_poll_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :polls_user_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :yea %>
-    <%= form.check_box :yea, id: :polls_user_yea %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nay %>
-    <%= form.check_box :nay, id: :polls_user_nay %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+<% @polls.each do |poll| %>
+  <div>
+    <td><%= poll.poll_text %></td>
+    <button class="yea-button" id="poll_id_<%= poll.id%>"> Yea </button>
+    <button class="nay-button" id="poll_id_<%= poll.id%>"> Nay </button>
   </div>
 <% end %>
+
+<script>
+  
+    var yeaPoll = function(poll_id){
+      $.ajax({
+              url: '/polls_users' ,
+              type: 'POST',
+              data: {
+                  polls_user: {
+                      poll_id: poll_id,
+                      yea: true,
+                      nay: false,
+                  }
+              },
+              success: function(result)   {
+
+                  console.log("yeapoll");
+    
+              },
+              error: function(err)    {
+                  console.log(err);
+              }
+      }); 
+  };
+
+    var nayPoll = function(poll_id){
+      $.ajax({
+              url: '/polls_users' ,
+              type: 'POST',
+              data: {
+                  polls_user: {
+                      poll_id: poll_id,
+                      nay: true,
+                      yea: false,
+                  }
+              },
+              success: function(result)   {
+
+              },
+              error: function(err)    {
+                  console.log(err);
+              }
+      }); 
+  };
+
+  $('.yea-button').click(function(e){
+              e.preventDefault()
+
+              var poll_id = (this.id.slice(8))
+              console.log(poll_id);
+              yeaPoll(poll_id);
+    });
+
+  $('.nay-button').click(function(e){
+            e.preventDefault()
+
+            var poll_id = (this.id.slice(8))
+            console.log(poll_id);
+            nayPoll(poll_id);
+  });
+
+</script>

@@ -1,5 +1,6 @@
 class PollsUsersController < ApplicationController
   before_action :set_polls_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: :create
 
   # GET /polls_users
   # GET /polls_users.json
@@ -15,6 +16,7 @@ class PollsUsersController < ApplicationController
   # GET /polls_users/new
   def new
     @polls_user = PollsUser.new
+    @polls = Poll.all
   end
 
   # GET /polls_users/1/edit
@@ -24,12 +26,15 @@ class PollsUsersController < ApplicationController
   # POST /polls_users
   # POST /polls_users.json
   def create
+    @polls = Poll.all
+
     @polls_user = PollsUser.new(polls_user_params)
+    @polls_user.user_id = current_user.id
 
     respond_to do |format|
-      if @polls_user.save
-        format.html { redirect_to @polls_user, notice: 'Polls user was successfully created.' }
-        format.json { render :show, status: :created, location: @polls_user }
+      if @polls_user.save!
+        #format.html { redirect_to @polls_user, notice: 'Polls user was successfully created.' }
+        format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @polls_user.errors, status: :unprocessable_entity }
