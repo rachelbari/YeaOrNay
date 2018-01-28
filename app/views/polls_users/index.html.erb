@@ -16,8 +16,8 @@
   <tbody>
     <% @polls_users.each do |polls_user| %>
       <tr>
-        <td><%= polls_user.poll %></td>
-        <td><%= polls_user.user %></td>
+        <td><%= polls_user.poll_id %></td>
+        <td><%= polls_user.user_id %></td>
         <td><%= polls_user.yea %></td>
         <td><%= polls_user.nay %></td>
         <td><%= link_to 'Show', polls_user %></td>

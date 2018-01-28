@@ -1,8 +1,8 @@
 <% @polls.each do |poll| %>
   <div>
     <td><%= poll.poll_text %></td>
-    <button class="yea-button" id="poll_id_<%= poll.id%>"> Yea </button>
-    <button class="nay-button" id="poll_id_<%= poll.id%>"> Nay </button>
+    <button class="yea-button" id="poll_id_yea_<%= poll.id%>"> Yea </button>
+    <button class="nay-button" id="poll_id_nay_<%= poll.id%>"> Nay </button>
   </div>
 <% end %>
 
@@ -20,9 +20,7 @@
                   }
               },
               success: function(result)   {
-
-                  console.log("yeapoll");
-    
+                  $('#poll_id_yea_' + poll_id + '').toggleClass('yea-highlight')
               },
               error: function(err)    {
                   console.log(err);
@@ -42,7 +40,7 @@
                   }
               },
               success: function(result)   {
-
+                $('#poll_id_nay_' + poll_id + '').toggleClass('nay-highlight')
               },
               error: function(err)    {
                   console.log(err);
@@ -53,7 +51,7 @@
   $('.yea-button').click(function(e){
               e.preventDefault()
 
-              var poll_id = (this.id.slice(8))
+              var poll_id = (this.id.slice(12))
               console.log(poll_id);
               yeaPoll(poll_id);
     });
@@ -61,7 +59,7 @@
   $('.nay-button').click(function(e){
             e.preventDefault()
 
-            var poll_id = (this.id.slice(8))
+            var poll_id = (this.id.slice(12))
             console.log(poll_id);
             nayPoll(poll_id);
   });
